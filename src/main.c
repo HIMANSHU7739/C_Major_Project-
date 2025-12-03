@@ -1,3 +1,5 @@
+//  entry point of Mall Management System
+
 #include <stdio.h>
 #include "functions.h"
 #include "input.h"
@@ -7,12 +9,14 @@ int main() {
     printf("=====================================\n");
     printf("       MALL MANAGEMENT SYSTEM \n");
     printf("=====================================\n");
-
+    
+// Main program loop
     while (1) {
         showMenu();
         printf("\nEnter your choice: ");
         choice = readInt();
-
+        
+// Process menu selection
         if (choice == 1) addItem();
         else if (choice == 2) displayItems();
         else if (choice == 3) buyItems();
