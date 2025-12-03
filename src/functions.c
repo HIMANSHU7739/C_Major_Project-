@@ -6,6 +6,7 @@
 struct Item items[MAX_ITEMS];
 int itemCount = 0;
 
+// Display main menu options
 void showMenu() {
     printf("\n--------------- MAIN MENU ---------------\n");
     printf("1. Add new item\n");
@@ -19,7 +20,7 @@ void showMenu() {
     printf("-----------------------------------------\n");
 }
 
-
+// Add new item
 void addItem() {
     if (itemCount >= MAX_ITEMS) {
         printf("\nCannot add more items.\n");
@@ -44,6 +45,7 @@ void addItem() {
     printf("\nItem added successfully! ID = %d\n", newItem.id);
 }
 
+// Display all items
 void displayItems() {
     if (itemCount == 0) {
         printf("\nNo items found.\n");
@@ -63,6 +65,7 @@ void displayItems() {
     }
 }
 
+// Processes customer purchase with billing and discount
 void buyItems() {
     if (itemCount == 0) {
         printf("\nNo items available.\n");
@@ -72,11 +75,13 @@ void buyItems() {
     displayItems();
     float total = 0.0f;
 
+    // Allow multiple items in one transaction
     while (1) {
         printf("\nEnter ID to buy (0 to finish): ");
         int id = readInt();
         if (id == 0) break;
-
+        
+    // Find item by ID
         int index = -1;
         for (int i = 0; i < itemCount; i++) {
             if (items[i].id == id) { index = i; break; }
@@ -91,10 +96,13 @@ void buyItems() {
             continue;
         }
 
+        // Update bill and inventory
         total += items[index].price * qty;
         items[index].quantity -= qty;
         printf("Added %d x %s to bill.\n", qty, items[index].name);
     }
+
+    // Calculate final bill with discount
 
     printf("\nTotal bill = %.2f\n", total);
     if (total >= 1000.0f) {
@@ -106,6 +114,7 @@ void buyItems() {
     printf("Thank you for shopping!\n");
 }
 
+// Search and display item by ID
 void searchById() {
     if (itemCount == 0) { printf("\nNo items available.\n"); return; }
 
@@ -122,6 +131,7 @@ void searchById() {
     printf("\nNo item found with this ID.\n");
 }
 
+// Search items by name 
 void searchByName() {
     if (itemCount == 0) { printf("\nNo items available.\n"); return; }
 
@@ -145,6 +155,7 @@ void searchByName() {
     if (!found) printf("No item found with that name.\n");
 }
 
+// Update item details
 void updateItem() {
     if (itemCount == 0) { printf("\nNo items available.\n"); return; }
 
@@ -173,6 +184,7 @@ void updateItem() {
     printf("Item not found.\n");
 }
 
+// Delete item
 void deleteItem() {
     if (itemCount == 0) { printf("\nNo items available.\n"); return; }
 
